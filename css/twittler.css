@@ -14,6 +14,7 @@ a:hover,
 a:focus {
   text-decoration: none;
 }
+
 .navbar img{
     position: absolute;
     left: 50%;
@@ -40,6 +41,16 @@ a:focus {
     text-decoration: none;
     width: 56%;
 }
+
+#time-date {
+	color: #777;
+}
+#time {
+	color: #777;
+	float: right;
+}
+
+
 
 #count {
 	text-decoration: none;
@@ -78,8 +89,7 @@ color:#fff;
 }
 
 #block {
-	height: 50px;
-	/*border-bottom: 1px solid gray;*/
+	margin-top: -20px;
 }
 
 

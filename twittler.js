@@ -11,10 +11,10 @@ var nextTweet = function(){
 function format_time(value, type_str) {
   var str = "";
   if (value > 1) {
-    str = value.toString() + " " + type_str + "s";
+    str = value.toString() + " " + type_str + "s" + " ago";
   }
   else {
-    str = value.toString() + " " + type_str;
+    str = value.toString() + " " + type_str + " ago";
   }
   return str;
 }
@@ -65,11 +65,54 @@ function streamTweet(user){
       else {
         var tweet = streams.users[user][index];
       }
-      var $tweet = $('<div id=block></div>');
-      $tweet.text('@' + tweet.user + ': ' + tweet.message + '   ' + elapsedTime(tweet.created_at));
+      var $tweet = $('<div id=block class=well></div>');
+      var $name = $('<a></a>');
+      var $time = $('<small id=time-date></small>')
+      var $timeelapsed = $('<small id=time></small><br>')
+      var $message = $('<p></p>');
+      
+      $name.text('@' + tweet.user + ': ');
+      $name.appendTo($tweet);
+      
+      var date = new Date();
+      $time.text(' posted on ' + (date.getMonth()+1) + "/"
+                + date.getDate()  + "/" 
+                + date.getFullYear() + "  "  
+                + date.getHours() + ":"  
+                + date.getMinutes() + ":" + date.getSeconds());
+      $time.appendTo($tweet);
+
+      $timeelapsed.text(elapsedTime(tweet.created_at));
+      $timeelapsed.appendTo($tweet);
+      
+      $message.text(tweet.message);
+      $message.appendTo($tweet);
+
+      // $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + elapsedTime(tweet.created_at));
+      $tweet.css({
+        'border': '1px solid #ccc'
+      })
+        $timeelapsed.css({
+        'text-align':'center'
+      })
+      
       $tweet.appendTo($body);
       index -= 1;
     } 
+  }
+
+function streamUserI(){
+    var $body = $('.people-follow');
+    for(var key in streams){
+      if(key === 'users')
+        for(var key in streams.users){
+          var user = key;
+          var $user = $('<a id='+user+'></a><br>');
+          $user.text('@' + user);
+          $user.appendTo($body);
+        }
+    }
+
   }
 
   function streamUser(){
