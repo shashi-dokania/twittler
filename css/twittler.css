@@ -5,6 +5,15 @@ html body {
 .features .glyphicon {
 	padding-right: 3px;
 }
+
+a {
+	cursor: pointer;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
 .navbar img{
     position: absolute;
     left: 50%;
@@ -29,6 +38,7 @@ html body {
 #tweets a {
     color: #428BCA;
     text-decoration: none;
+    width: 56%;
 }
 
 #count {
@@ -37,13 +47,15 @@ html body {
 
 #follow {
 	margin-left: -10px;
-	width: 26.7%;
+	width: 18.3%;
 }
-
-#follow .people-follow {
+.people-follow a{
 	text-decoration: none;
 }
 
+.people-follow:hover {
+	cursor: pointer;
+}
 .new-tweets {
 	background-color: #E0E0E0;
 }
