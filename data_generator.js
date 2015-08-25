@@ -1,4 +1,4 @@
-/*
+  /*
  * NOTE: This file generates fake tweet data, and is not intended to be part of your implementation.
  * You can safely leave this file untouched, and confine your changes to index.html.
  */
@@ -48,7 +48,9 @@ var generateRandomTweet = function(){
 
 for(var i = 0; i < 10; i++){
   generateRandomTweet();
+  
 }
+
 
 var scheduleNextTweet = function(){
   generateRandomTweet();

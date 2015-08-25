@@ -1,0 +1,75 @@
+html body {
+	height: 100%;
+}
+
+.features .glyphicon {
+	padding-right: 3px;
+}
+.navbar img{
+    position: absolute;
+    left: 50%;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+
+.search input {
+	border-radius: 20px;
+}
+
+#box {
+	margin-top: -15px;
+}
+
+#tweets {
+	margin-left: -10px;
+}
+
+#tweets a {
+    color: #428BCA;
+    text-decoration: none;
+}
+
+#count {
+	text-decoration: none;
+}
+
+#follow {
+	margin-left: -10px;
+	width: 26.7%;
+}
+
+#follow .people-follow {
+	text-decoration: none;
+}
+
+.new-tweets {
+	background-color: #E0E0E0;
+}
+
+.new-tweets p {
+	text-decoration: none;
+	margin-top: 15px;
+	color: #777;
+}
+
+.tweet-container {
+	margin-top: -20px;
+}
+
+.footer
+{
+height: 50px;
+padding-top:1.5%;
+color:#fff;
+}
+
+#block {
+	height: 50px;
+	/*border-bottom: 1px solid gray;*/
+}
+
+
+
+
