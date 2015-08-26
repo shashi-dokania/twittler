@@ -1,5 +1,6 @@
 var count = 0;
 
+// creating new tweets in intervals and creating a count for number of tweets
 var nextTweet = function(){
   generateRandomTweet();
   count++;
@@ -8,6 +9,7 @@ var nextTweet = function(){
   setTimeout(nextTweet, Math.random() * 5000);
 };
 
+// creating the format in which time elapsed to be displayed
 function format_time(value, type_str) {
   var str = "";
   if (value > 1) {
@@ -19,6 +21,7 @@ function format_time(value, type_str) {
   return str;
 }
 
+//calculating the elapsed time
 function elapsedTime(time_created) {
   var curr_time = new Date();
   var diff_in_sec = Math.ceil((curr_time - time_created) / 1000);
@@ -44,6 +47,7 @@ function elapsedTime(time_created) {
   }
 } 
 
+//streaming the tweets along with timestamps
 function streamTweet(user){
     $("#new-tweet").hide();
     count = 0;
@@ -63,18 +67,20 @@ function streamTweet(user){
         var tweet = streams.home[index];
       }
       else {
-        var tweet = streams.users[user][index];
+        tweet = streams.users[user][index];
       }
+
+      
       var $tweet = $('<div id=block class=well></div>');
-      var $name = $('<a></a>');
+      var $name = $('<a id='+tweet.user+'></a>');
       var $time = $('<small id=time-date></small>')
-      var $timeelapsed = $('<small id=time></small><br>')
+      var $timelapsed = $('<small id=time></small><br>')
       var $message = $('<p></p>');
       
       $name.text('@' + tweet.user + ': ');
       $name.appendTo($tweet);
       
-      var date = new Date();
+      var date = new Date(tweet.created_at);
       $time.text(' posted on ' + (date.getMonth()+1) + "/"
                 + date.getDate()  + "/" 
                 + date.getFullYear() + "  "  
@@ -82,8 +88,8 @@ function streamTweet(user){
                 + date.getMinutes() + ":" + date.getSeconds());
       $time.appendTo($tweet);
 
-      $timeelapsed.text(elapsedTime(tweet.created_at));
-      $timeelapsed.appendTo($tweet);
+      $timelapsed.text(elapsedTime(tweet.created_at));
+      $timelapsed.appendTo($tweet);
       
       $message.text(tweet.message);
       $message.appendTo($tweet);
@@ -92,7 +98,7 @@ function streamTweet(user){
       $tweet.css({
         'border': '1px solid #ccc'
       })
-        $timeelapsed.css({
+        $timelapsed.css({
         'text-align':'center'
       })
       
@@ -101,20 +107,7 @@ function streamTweet(user){
     } 
   }
 
-function streamUserI(){
-    var $body = $('.people-follow');
-    for(var key in streams){
-      if(key === 'users')
-        for(var key in streams.users){
-          var user = key;
-          var $user = $('<a id='+user+'></a><br>');
-          $user.text('@' + user);
-          $user.appendTo($body);
-        }
-    }
-
-  }
-
+//adding list of people following
   function streamUser(){
     var $body = $('.people-follow');
     for(var key in streams){
@@ -128,6 +121,7 @@ function streamUserI(){
     }
 
   }
+
 
 $(document).ready(function(){
 
@@ -144,7 +138,13 @@ $("#new-tweet").click(function() {
 });
 
 $(".people-follow").click(function() {
-  streamTweet(event.target.id);
+  if (event.target.id)
+    streamTweet(event.target.id);
+});
+
+$(".tweet-container").on('click', 'a', function() {
+   if (event.target.id)
+    streamTweet(event.target.id);
 });
 
 $('#myHome').click(function(){
