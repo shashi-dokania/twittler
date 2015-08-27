@@ -49,55 +49,55 @@ function elapsedTime(time_created) {
 
 //streaming the tweets along with timestamps
 function streamTweet(user){
-    $("#new-tweet").hide();
-    count = 0;
-    var $body = $('.tweet-container');
-    $body.html('');
-    var index = 0;
-    
+  $("#new-tweet").hide();
+  count = 0;
+  var $body = $('.tweet-container');
+  $body.html('');
+  var index = 0;
+  
+  if (user === "home") {
+    index = streams.home.length - 1;
+  }
+  else {
+    index = streams.users[user].length - 1;
+  }
+
+  while(index >= 0){
     if (user === "home") {
-      index = streams.home.length - 1;
+      var tweet = streams.home[index];
     }
     else {
-      index = streams.users[user].length - 1;
+      tweet = streams.users[user][index];
     }
 
-    while(index >= 0){
-      if (user === "home") {
-        var tweet = streams.home[index];
-      }
-      else {
-        tweet = streams.users[user][index];
-      }
+    var $tweet = $('<div id=block class=well></div>');
+    var $name = $('<a id='+tweet.user+'></a>');
+    var $time = $('<small id=time-date></small>')
+    var $timelapsed = $('<small id=time></small><br>')
+    var $message = $('<p></p>');
+    
+    $name.text('@' + tweet.user + ': ');
+    $name.appendTo($tweet);
+    
+    var date = new Date(tweet.created_at);
+    $time.text(' posted on ' + (date.getMonth()+1) + "/"
+      + date.getDate()  + "/" 
+      + date.getFullYear() + "  "  
+      + date.getHours() + ":"  
+      + date.getMinutes() + ":" + date.getSeconds());
+    $time.appendTo($tweet);
 
-      var $tweet = $('<div id=block class=well></div>');
-      var $name = $('<a id='+tweet.user+'></a>');
-      var $time = $('<small id=time-date></small>')
-      var $timelapsed = $('<small id=time></small><br>')
-      var $message = $('<p></p>');
-      
-      $name.text('@' + tweet.user + ': ');
-      $name.appendTo($tweet);
-      
-      var date = new Date(tweet.created_at);
-      $time.text(' posted on ' + (date.getMonth()+1) + "/"
-                + date.getDate()  + "/" 
-                + date.getFullYear() + "  "  
-                + date.getHours() + ":"  
-                + date.getMinutes() + ":" + date.getSeconds());
-      $time.appendTo($tweet);
-
-      $timelapsed.text(elapsedTime(tweet.created_at));
-      $timelapsed.appendTo($tweet);
-      
-      $message.text(tweet.message);
-      $message.appendTo($tweet);
+    $timelapsed.text(elapsedTime(tweet.created_at));
+    $timelapsed.appendTo($tweet);
+    
+    $message.text(tweet.message);
+    $message.appendTo($tweet);
 
       // $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + elapsedTime(tweet.created_at));
       $tweet.css({
         'border': '1px solid #ccc'
       })
-        $timelapsed.css({
+      $timelapsed.css({
         'text-align':'center'
       })
       
@@ -158,17 +158,17 @@ $("#new-tweet").click(function() {
 $(".people-follow").click(function() {
   ProfileDisplay();
   if (event.target.id){
-      streamTweet(event.target.id);
-      $('#user-profile').show();
-    }
+    streamTweet(event.target.id);
+    $('#user-profile').show();
+  }
 });
 
 $(".tweet-container").on('click', 'a', function() {
   ProfileDisplay();
   if (event.target.id){
-      streamTweet(event.target.id);
-      $('#user-profile').show();
-    }
+    streamTweet(event.target.id);
+    $('#user-profile').show();
+  }
 });
 
 $('#myHome').click(function(){
