@@ -28,9 +28,20 @@ a:focus {
 	border-radius: 20px;
 }
 
+#title {
+
+    margin-left: 540px;
+    margin-top: 0;
+    display: block;
+}
+
 #box {
 	margin-top: -15px;
 }
+
+/*#user-profile {
+	margin-left: 100px;
+}*/
 
 #tweets {
 	margin-left: -10px;

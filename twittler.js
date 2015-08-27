@@ -70,7 +70,6 @@ function streamTweet(user){
         tweet = streams.users[user][index];
       }
 
-      
       var $tweet = $('<div id=block class=well></div>');
       var $name = $('<a id='+tweet.user+'></a>');
       var $time = $('<small id=time-date></small>')
@@ -107,7 +106,7 @@ function streamTweet(user){
     } 
   }
 
-//adding list of people following
+//creating list of people following
   function streamUser(){
     var $body = $('.people-follow');
     for(var key in streams){
@@ -117,10 +116,28 @@ function streamTweet(user){
           var $user = $('<a id='+user+'></a><br>');
           $user.text('@' + user);
           $user.appendTo($body);
+
         }
     }
 
   }
+
+//display the name of the user in profile section when the user is clicked
+  function ProfileDisplay(){
+    var element = document.getElementById("user-profile");
+    if(element){
+      element.parentNode.removeChild(element);
+    }
+    var $div = $('#profile');
+    var $profile = $('<h4 id=user-profile></h4>')
+    $profile.text(event.target.id);
+    $profile.appendTo($div);
+    $profile.css({
+      'text-align':'center'
+    })
+    $profile.hide();
+    
+  };
 
 
 $(document).ready(function(){
@@ -135,18 +152,26 @@ $(document).ready(function(){
 
 $("#new-tweet").click(function() {
   streamTweet("home");
+  ProfileDisplay();
 });
 
 $(".people-follow").click(function() {
-  if (event.target.id)
-    streamTweet(event.target.id);
+  ProfileDisplay();
+  if (event.target.id){
+      streamTweet(event.target.id);
+      $('#user-profile').show();
+    }
 });
 
 $(".tweet-container").on('click', 'a', function() {
-   if (event.target.id)
-    streamTweet(event.target.id);
+  ProfileDisplay();
+  if (event.target.id){
+      streamTweet(event.target.id);
+      $('#user-profile').show();
+    }
 });
 
 $('#myHome').click(function(){
   streamTweet("home");
+  ProfileDisplay();
 })
