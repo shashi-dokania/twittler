@@ -25,7 +25,7 @@
 						</span>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary"><i class='glyphicon glyphicon-leaf'></i>Twittle</button>
+				<button id='pop-up' type="button" class="btn btn-primary"><i class='glyphicon glyphicon-leaf'></i>Tweet</button>
 			</form>			
 		</div>
 		<h1 id='title'>Twittler</h1>
@@ -38,7 +38,6 @@
 				<center><h3>Profile</h3></center>
 				<div>
 					<center><img src='tLogo.png' class='text-center' width='100px' height='100px'></img></center>
-					<!-- <h4 id='user-profile' class='text-center'></h4> -->
 				</div>
 			</div>
 
@@ -48,14 +47,12 @@
 						<p class='nav nav-justified navbar-nav'>View<button class='btn btn-link' type='button' id='count'></button>new Tweets</p>
 					</div>
 				</a>
-				<div class='tweet-container'>	
-				</div>
+				<div class='tweet-container'></div>
 			</div>
 
 			<div id='follow' class='col-md-1 well'>
 				<p class='text-center lead' style='font-size: 17px;'>People You Follow</p>
-				<div class='people-follow'>
-				</div>
+				<div class='people-follow'></div>
 			</div>
 
 		</div>
@@ -65,9 +62,30 @@
 		<small>&copy;2015 Shashi Dokania - Hack Reactor</small>
 	</div>
 
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id='close' type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-center" id="myModalLabel">Compose new Tweet</h4>
+            </div>
+            <div class="well">
+            	<form>
+            		<input id='user-tweet' type="text" class="form-control"></input>
+            	</form>
+            </div>
+            <div class="modal-footer">
+                <button id='tweet-btn' type="button" class="btn btn-primary"><i class='glyphicon glyphicon-leaf'></i> Tweet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 	<script src='jquery.js'></script>
 	<script src='data_generator.js'></script>
 	<script src='twittler.js'></script>
 	<script src='js/bootstrap.js'></script>	
+	<script src='js/bootstrap.min.js'></script>	
 </body>
 </html>

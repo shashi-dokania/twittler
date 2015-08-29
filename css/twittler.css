@@ -39,10 +39,6 @@ a:focus {
 	margin-top: -15px;
 }
 
-/*#user-profile {
-	margin-left: 100px;
-}*/
-
 #tweets {
 	margin-left: -10px;
 }
@@ -61,8 +57,6 @@ a:focus {
 	float: right;
 }
 
-
-
 #count {
 	text-decoration: none;
 }
@@ -71,6 +65,7 @@ a:focus {
 	margin-left: -10px;
 	width: 18.3%;
 }
+
 .people-follow a{
 	text-decoration: none;
 }
@@ -78,6 +73,7 @@ a:focus {
 .people-follow:hover {
 	cursor: pointer;
 }
+
 .new-tweets {
 	background-color: #E0E0E0;
 }
